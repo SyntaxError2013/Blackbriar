@@ -21,7 +21,7 @@ public class GraphSearchIndexingMain
 		GraphSearchIndexing index = new GraphSearchIndexing();
 		List<Map<String, String>> listOfMovies = db.getFromSQL();
 		
-		for(int i = 0; i < listOfMovies.size(); i++)
+		for(int i = 25000; i < listOfMovies.size(); i++)
 		{
 			System.out.println(i);
 			Map<String, String> currentMovie = listOfMovies.get(i);

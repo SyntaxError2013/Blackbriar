@@ -14,7 +14,7 @@ public class GraphSearchIndexing
 	private String indexLocation = "/home/neeraj/Desktop/Index";
 	File file = new File(indexLocation);
 	private FSDirectory indexDirectory = FSDirectory.open(file, null);	
-	private IndexWriter indexWriter = new IndexWriter(indexDirectory, new StandardAnalyzer(Version.LUCENE_30), true, IndexWriter.MaxFieldLength.UNLIMITED);
+	private IndexWriter indexWriter = new IndexWriter(indexDirectory, new StandardAnalyzer(Version.LUCENE_30), false, IndexWriter.MaxFieldLength.UNLIMITED);
 	
 	public GraphSearchIndexing() throws IOException {}
 	
@@ -22,6 +22,6 @@ public class GraphSearchIndexing
 	{
 		indexWriter.addDocument(doc.getDocument());
 		indexWriter.commit();
-		indexWriter.optimize();
+		//indexWriter.optimize();
 	}
 }

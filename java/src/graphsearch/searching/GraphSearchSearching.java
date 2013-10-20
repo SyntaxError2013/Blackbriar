@@ -28,11 +28,11 @@ public class GraphSearchSearching
 	/* function to return results of a search query in the form of a map
 	 * it takes field as input and query string as input.
 	 */
-	public Map<Float, String> search(String queryStr, String field) throws ParseException, IOException
+	public Map<String, Float> search(String queryStr, String field) throws ParseException, IOException
 	{
 		queryStr = queryStr.toLowerCase();
 		field = field.toLowerCase();
-		Map<Float, String> map = new HashMap<Float, String>();
+		Map<String, Float> map = new HashMap<String, Float>();
 		QueryParser parser = new QueryParser(Version.LUCENE_30, field, new WhitespaceAnalyzer());
 		Query query = parser.parse(queryStr);
 		TopDocs hits = indexSearcher.search(query, 20);
@@ -41,7 +41,7 @@ public class GraphSearchSearching
 		{
 			ScoreDoc scoreDoc = hits.scoreDocs[i];
 			Document doc = indexSearcher.doc(scoreDoc.doc);
-			map.put(scoreDoc.score, doc.get(field));
+			map.put(doc.get("movie"), scoreDoc.score);
 			
 		}
 		indexSearcher.close();
